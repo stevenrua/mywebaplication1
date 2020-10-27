@@ -1,0 +1,30 @@
+<div class="accordion_display">
+    <div class="accordion_size">
+        <mat-accordion multi = "true" *ngIf="tasks.length">
+            <mat-expansion-panel *ngFor = "let task1 of tasks" hideToggle="false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <span class="text_center">{{task1.name}}</span>
+                        <span class="spacer"></span>
+                        <button class="btDone" *ngIf="task1.status == 'done'" mat-raised-button>{{task1.status}}</button> 
+                        <button class="btInProgress" *ngIf="task1.status == 'in progress'" mat-raised-button>{{task1.status}}</button> 
+                        <button class="btToDo" *ngIf="task1.status == 'to-do'" mat-raised-button>{{task1.status}}</button> 
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description>
+                    {{task1.description}}
+                </mat-panel-description>
+                <mat-panel-description>
+                    <img class="image_center" src = {{task1.imageUrl}}>
+                </mat-panel-description>
+                <mat-action-row>
+                    <button class="btselectToDo" mat-button (click)="changeStatus(task1, 'to-do')">ToDo</button>
+                    <button class="btselectInProgress" mat-button (click)="changeStatus(task1, 'in progress')">In Progree</button>
+                    <button class="btselectDone" mat-button (click)="changeStatus(task1, 'done')">Done</button>
+                    <span class="spacer"></span>      
+                    <mat-icon color="primary" (click)="delete(task1)">delete</mat-icon>              
+                </mat-action-row>                
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>
